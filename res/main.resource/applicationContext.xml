@@ -1,0 +1,38 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- 基础bean -->
+	<bean id="testService" class="priv.dengjl.springaop.service.TestService">
+		<property name="name" value="王者" />
+		<property name="url" value="www.mmp.com" />
+	</bean>
+	
+	<!-- 代理类bean -->
+	<bean id="serviceProxy" 
+                 class="org.springframework.aop.framework.ProxyFactoryBean">
+		<!-- 被代理对象 -->
+		<property name="target" ref="testService" />
+
+		<!-- 配置被代理对象需要处理的动作 -->
+		<property name="interceptorNames">
+			<list>
+				<value>testBeforeAdvice</value>
+				<value>testBeforeAdvice2</value>
+				<value>testAfterAdvice</value>
+				<value>testAfterAdvice2</value>
+				<value>testThrowException</value>
+				<value>testAroundMethod</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="testBeforeAdvice" class="priv.dengjl.springaop.aop.TestBeforeAdvice" />
+	<bean id="testBeforeAdvice2" class="priv.dengjl.springaop.aop.TestBeforeAdvice2" />
+	<bean id="testAfterAdvice" class="priv.dengjl.springaop.aop.TestAfterAdvice" />
+	<bean id="testAfterAdvice2" class="priv.dengjl.springaop.aop.TestAfterAdvice2" />
+	<bean id="testThrowException" class="priv.dengjl.springaop.aop.TestThrowException" />
+	<bean id="testAroundMethod" class="priv.dengjl.springaop.aop.TestAroundMethod" />
+
+</beans>
