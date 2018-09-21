@@ -1,34 +1,18 @@
 package priv.dengjl.springaop.aop;
 
-import java.util.Arrays;
-
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 
-public class TestAroundMethod implements MethodInterceptor  {
+public class TestAroundMethod implements MethodInterceptor {
 	@Override
 	public Object invoke(MethodInvocation methodInvocation) throws Throwable {
-
-		System.out.println("Method name : "
-				+ methodInvocation.getMethod().getName());
-		System.out.println("Method arguments : "
-				+ Arrays.toString(methodInvocation.getArguments()));
-
-		// same with MethodBeforeAdvice
-		System.out.println("HijackAroundMethod : Before method hijacked!");
-
+		System.out.println("TestAroundMethod环绕 before");
 		try {
-			// proceed to original method call
 			Object result = methodInvocation.proceed();
-
-			// same with AfterReturningAdvice
-			System.out.println("HijackAroundMethod : Before after hijacked!");
-
+			System.out.println("TestAroundMethod环绕 after");
 			return result;
-
 		} catch (IllegalArgumentException e) {
-			// same with ThrowsAdvice
-			System.out.println("HijackAroundMethod : Throw exception hijacked!");
+			System.out.println("TestAroundMethod环绕 after异常");
 			throw e;
 		}
 	}

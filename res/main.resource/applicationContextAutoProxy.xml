@@ -5,7 +5,7 @@
 
 	<!-- 基础bean -->
 	<bean id="testService" class="priv.dengjl.springaop.service.TestService">
-		<property name="name" value="王者" />
+		<property name="name" value="呵呵哒" />
 		<property name="url" value="www.mmp.com" />
 	</bean>
 	
@@ -65,7 +65,7 @@
 		</property>
 	</bean> -->
 	<!-- 动态代理类bean -->
-	<!-- <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+	<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
         <property name="beanNames">
             <list>
                 <value>*Service</value>
@@ -78,10 +78,10 @@
 				<value>myAroundAdvisor</value>
             </list>
         </property>
-    </bean> -->
+    </bean>
     
     <!-- DefaultAdvisorAutoProxyCreator 是非常强大的，如果有 bean 相关连，Spring会自动创建一个代理,不建议使用，应当显示说明 -->
-    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
+    <!-- <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" /> -->
 	
 	<bean id="testBeforeAdvice" class="priv.dengjl.springaop.aop.TestBeforeAdvice" />
 	<bean id="testBeforeAdvice2" class="priv.dengjl.springaop.aop.TestBeforeAdvice2" />

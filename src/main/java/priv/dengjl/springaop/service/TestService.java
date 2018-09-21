@@ -1,5 +1,10 @@
 package priv.dengjl.springaop.service;
 
+/**
+ * 业务类
+ * 
+ * @author it
+ */
 public class TestService {
 	private String name;
 	private String url;

@@ -5,7 +5,7 @@
 
 	<!-- 基础bean -->
 	<bean id="testService" class="priv.dengjl.springaop.service.TestService">
-		<property name="name" value="王者" />
+		<property name="name" value="呵呵哒" />
 		<property name="url" value="www.mmp.com" />
 	</bean>
 	

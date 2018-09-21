@@ -5,13 +5,12 @@
 
 	<!-- 基础bean -->
 	<bean id="testService" class="priv.dengjl.springaop.service.TestService">
-		<property name="name" value="王者" />
+		<property name="name" value="呵呵哒" />
 		<property name="url" value="www.mmp.com" />
 	</bean>
-	
+
 	<!-- 代理类bean -->
-	<bean id="serviceProxy" 
-                 class="org.springframework.aop.framework.ProxyFactoryBean">
+	<bean id="serviceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
 		<!-- 被代理对象 -->
 		<property name="target" ref="testService" />
 
@@ -27,7 +26,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="testBeforeAdvice" class="priv.dengjl.springaop.aop.TestBeforeAdvice" />
 	<bean id="testBeforeAdvice2" class="priv.dengjl.springaop.aop.TestBeforeAdvice2" />
 	<bean id="testAfterAdvice" class="priv.dengjl.springaop.aop.TestAfterAdvice" />
