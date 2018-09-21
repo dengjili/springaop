@@ -1,0 +1,55 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+
+	<aop:aspectj-autoproxy />
+
+	<!-- 基础bean -->
+	<bean id="testService" class="priv.dengjl.springaop.service.TestService">
+		<property name="name" value="呵呵哒" />
+		<property name="url" value="www.mmp.com" />
+	</bean>
+
+	<!-- 开启aspectj方式 -->
+	<aop:aspectj-autoproxy />
+
+	<!-- Aspect -->
+	<bean id="testAspect" class="priv.dengjl.aspectj.impl.ServiceAspectjXml" />
+
+	<aop:config>
+		<aop:aspect id="myAspect" ref="testAspect">
+			<aop:pointcut id="pointCutBefore"
+				expression="execution(* priv.dengjl.springaop.service.*.printName(..))" />
+			<aop:pointcut id="pointCutAfter"
+				expression="execution(* priv.dengjl.springaop.service.*.printURL(..))" />
+			<aop:pointcut id="pointCutAfterReturning"
+				expression="execution(* priv.dengjl.springaop.service.*.returnValue(..))" />
+			<aop:pointcut id="pointCutAfterThrowing"
+				expression="execution(* priv.dengjl.springaop.service.*.printThrowException(..))" />
+			<aop:pointcut id="pointCutAround"
+				expression="execution(* priv.dengjl.springaop.service.*.testAroud(..))" />
+
+
+			<!-- @Before -->
+			<aop:before method="logBefore" pointcut-ref="pointCutBefore" />
+
+			<!-- @After -->
+			<aop:after method="afterAdvice" pointcut-ref="pointCutAfter" />
+
+			<!-- @AfterReturning -->
+			<aop:after-returning method="afterReturning"
+				returning="result" pointcut-ref="pointCutAfterReturning" />
+			<!-- @AfterThrowing -->
+			<aop:after-throwing method="afterThrowing"
+				throwing="error" pointcut-ref="pointCutAfterThrowing" />
+			<!-- @Around -->
+			<aop:around method="testAround" pointcut-ref="pointCutAround" />
+
+		</aop:aspect>
+
+	</aop:config>
+
+</beans>

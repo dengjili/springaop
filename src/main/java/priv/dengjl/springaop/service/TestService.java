@@ -26,6 +26,13 @@ public class TestService {
 	}
 
 	public void printThrowException() {
-		throw new IllegalArgumentException();
+		throw new IllegalArgumentException("1234");
+	}
+	public String returnValue() {
+		return "abc";
+	}
+	
+	public void testAroud() {
+		System.out.println("11111111111144444444444");
 	}
 }
